@@ -17,7 +17,8 @@ Responsive design
 
 ![Menu Page]<img width="1305" height="623" alt="Screenshot_1" src="https://github.com/user-attachments/assets/ad43ad1e-41ef-4235-bc1a-a32002ccbd72" />
 
-![Menu Page]<img width="1339" height="529" alt="Screenshot_3" src="https://github.com/user-attachments/assets/c6bceb39-97fd-412c-969d-069cf9faa358" />
+![Menu Page]<img width="1319" height="607" alt="Screenshot_2" src="https://github.com/user-attachments/assets/7dc48af8-4e2d-485f-a263-a1df0c2385a5" />
+
 
 ![Menu Page]<img width="1350" height="635" alt="Screenshot_4" src="https://github.com/user-attachments/assets/dcac759a-54c5-4421-b227-dba40679359f" />
 
