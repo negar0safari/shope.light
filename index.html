@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Negar - Online Store</title>
+    <link rel="stylesheet" href="stylee.css">
+    <style>
+        /* ========== RESPONSIVE STYLES ========== */
+
+        /* Base reset for box-sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Container --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ========== HEADER ========== */
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .header_logo img {
+            max-width: 120px;
+        }
+
+        .header_nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ========== PAGE INTRO ========== */
+        .page_intro .container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .page_intro_right,
+        .page_intro_left {
+            flex: 1 1 280px;
+        }
+
+        /* ========== NEW POSTS ========== */
+        .new_posts .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .new_posts .container > h2 {
+            width: 100%;
+        }
+
+        .new_post {
+            flex: 1 1 200px;
+            min-width: 150px;
+        }
+
+        .new_post_card {
+            width: 100%;
+        }
+
+        .new_post_card img {
+            width: 100%;
+        }
+
+        /* ========== HOME AD ========== */
+        .home_ad .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .home_ad_right,
+        .home_ad_left {
+            flex: 1 1 280px;
+        }
+
+        /* ========== BEST SELLERS ========== */
+        .products_grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .product_card {
+            flex: 1 1 200px;
+            min-width: 140px;
+        }
+
+        .product_card img {
+            width: 100%;
+        }
+
+        /* ========== WHY US ========== */
+        .why_us .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .why_us_item {
+            flex: 1 1 200px;
+            min-width: 140px;
+        }
+
+        /* ========== FOOTER ========== */
+        .main_footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .main_footer_first,
+        .main_footer_mid,
+        .main_footer_f_l {
+            flex: 1 1 200px;
+            min-width: 160px;
+        }
+
+        /* ========== TABLET (max 768px) ========== */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header_nav {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .page_intro .container {
+                flex-direction: column-reverse;
+            }
+
+            .page_intro_right,
+            .page_intro_left {
+                flex: 1 1 100%;
+            }
+
+            .new_post {
+                flex: 1 1 45%;
+            }
+
+            .product_card {
+                flex: 1 1 45%;
+            }
+
+            .why_us_item {
+                flex: 1 1 45%;
+            }
+
+            .home_ad_right,
+            .home_ad_left {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* ========== MOBILE (max 480px) ========== */
+        @media (max-width: 480px) {
+            .header .container {
+                align-items: center;
+                text-align: center;
+            }
+
+            .header_nav {
+                align-items: center;
+                width: 100%;
+            }
+
+            .login_btn {
+                width: 100%;
+            }
+
+            .page_intro_right_btns {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .page_intro_right_btn {
+                width: 100%;
+            }
+
+            .new_post {
+                flex: 1 1 100%;
+            }
+
+            .product_card {
+                flex: 1 1 100%;
+            }
+
+            .why_us_item {
+                flex: 1 1 100%;
+            }
+
+            .main_footer_first,
+            .main_footer_mid,
+            .main_footer_f_l {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="container">
+                <div class="header_logo">
+                    <img src="images/logo..png" alt="Shop Negar">
+                </div>
+                <nav>
+                    <ul class="header_nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="./product.html">Products</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </nav>
+                <button class="login_btn">Register | Login</button>
+            </div>
+        </div>
+
+        <div class="page_intro">
+            <div class="container">
+                <div class="page_intro_right">
+                    <h1>Shop Negar Online Store</h1>
+                    <h3>With our services, get the highest quality products in the shortest time</h3>
+                    <div class="page_intro_right_btns">
+                        <button class="page_intro_right_btn">Download App</button>
+                        <button class="page_intro_right_btn">Store</button>
+                    </div>
+                </div>
+                <div class="page_intro_left">
+                    <img src="images/a4.jpg" alt="Shop presentation">
+                </div>
+            </div>
+        </div>
+
+        <div class="new_posts">
+            <div class="container">
+                <h2>Newest Products</h2>
+                <div class="new_post"> 
+                    <div class="new_post_card">
+                        <div class="new_post_pic">
+                            <img src="images/a5.jpg" alt="Xiaomi Mi 10 5G">
+                        </div>
+                        <div class="new_post_body">
+                            <p class="new_post_title">Xiaomi Mi 10 5G Phone</p>
+                            <p class="new_Post_price">Price: 19 Million Tomans</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="new_post">   
+                    <div class="new_post_card">
+                        <div class="new_Post_pic1">
+                            <img src="images/a6.jpg" alt="Samsung Galaxy A16">
+                        </div>
+                        <div class="new_post_body1">
+                            <p class="new_post_title1">Samsung Galaxy A16 Mobile Phone</p>
+                            <p class="new_Post_price1">Price: 16.8 Million Tomans</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="new_post"> 
+                    <div class="new_post_card">
+                        <div class="new_post_pic2">
+                            <img src="images/a8.jpg" alt="iPhone 16 Pro Max">
+                        </div>
+                        <div class="new_post_body2">
+                            <p class="new_post_title2">iPhone 16 Pro Max</p>
+                            <p class="new_Post_price2">Price: 11 Million Tomans</p>
+                        </div>
+                    </div>    
+                </div>
+                <div class="new_post">   
+                    <div class="new_post_card">
+                        <div class="new_post_pic3">
+                            <img src="images/a9.jpg" alt="Samsung Galaxy S24 F">
+                        </div>
+                        <div class="new_post_body3">
+                            <p class="new_post_title3">Samsung Galaxy S24 F Mobile Phone</p>
+                            <p class="new_Post_price3">Price: 42 Million Tomans</p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        <div class="home_ad">
+            <div class="container">
+                <div class="home_ad_right">
+                    <img src="images/a15.jpg" alt="Special offer">
+                </div>
+                <div class="home_ad_left">
+                    <img src="images/a14.jpg" alt="Special offer">
+                </div>
+            </div>
+        </div>
+
+        <div class="best_sellers">
+            <div class="container">
+                <h2>Best Sellers</h2>
+                <div class="products_grid">
+                    <div class="product_card">
+                        <div class="product_image">
+                            <img src="images/b1.jpg" alt="Moyan Bluetooth Headphones MX66">
+                        </div>
+                        <div class="product_info">
+                            <p class="product_title">Moyan Bluetooth Headphones Model MX66</p>
+                            <p class="product_price">Price: 1.5 Million Tomans</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product_card">
+                        <div class="product_image">
+                            <img src="images/b2.jpg" alt="Apple Watch SE Gen2 2024">
+                        </div>
+                        <div class="product_info">
+                            <p class="product_title">Apple Watch SE Gen2 2024 40mm Size</p>
+                            <p class="product_price">Price: 19 Million Tomans</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product_card">
+                        <div class="product_image">
+                            <img src="images/b5.jpg" alt="Airpods Newest M19PR">
+                        </div>
+                        <div class="product_info">
+                            <p class="product_title">Airpods Newest M19PR</p>
+                            <p class="product_price">Price: 215 Thousand Tomans</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product_card">
+                        <div class="product_image">
+                            <img src="images/b4.jpg" alt="Apple Watch Series 10">
+                        </div>
+                        <div class="product_info">
+                            <p class="product_title">Apple Watch Series 10 42mm Size</p>
+                            <p class="product_price">Price: 20 Million Tomans</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="why_us">
+            <div class="container">
+                <div class="why_us_item">
+                    <div class="why_us_card">
+                        <img src="images/s1.jpg" alt="Free shipping icon">
+                        <h4>Free Shipping</h4>
+                        <p>Free shipping in less than an hour</p>
+                    </div>
+                </div>
+                <div class="why_us_item">
+                    <div class="why_us_card">
+                        <img src="images/s2.png" alt="Contact us icon">
+                        <h4>Contact Us</h4>
+                        <p>You can contact us for any comments and suggestions</p>
+                    </div>
+                </div>
+                <div class="why_us_item">
+                    <div class="why_us_card">
+                        <img src="images/s5.png" alt="Social media icon">
+                        <h4>How to Reach Us</h4>
+                        <p>You can visit our Instagram page for more information and discounts</p>
+                    </div>
+                </div>
+                <div class="why_us_item">
+                    <div class="why_us_card">
+                        <img src="images/s4.png" alt="Email icon">
+                        <h4>How to Reach Us</h4>
+                        <p>You can email us to ask any questions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="main_footer">
+            <div class="container">
+                <div class="main_footer_first">
+                    <div class="main_footer_card">
+                        <h4>About the Site</h4>
+                        <p>Shop Negar, the first online store in Iran</p>
+                    </div>
+                </div>
+
+                <div class="main_footer_mid">
+                    <div class="main_footer_card">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#">Samsung Phones</a></li>
+                            <li><a href="#">Nokia Phones</a></li>
+                            <li><a href="#">Headphones</a></li>
+                            <li><a href="#">Apple Watch</a></li>
+                            <li><a href="#">Airpods</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main_footer_mid">
+                    <div class="main_footer_card">
+                        <h4>Contact Methods</h4>
+                        <ul>
+                            <li><span>Phone: 0903****9856</span></li>
+                            <li><span>Email: negar@gmail.com</span></li>
+                            <li><span>Address: Qazvin, Minoodar</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="main_footer_f_l">
+                    <div class="main_footer_card">
+                        <h4>About the Site</h4>
+                        <div class="main_footer_card_namad">
+                            <img src="images/s7.jpg" alt="Site certificate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
