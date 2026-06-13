@@ -1,451 +1,843 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Negar - Online Store</title>
-    <link rel="stylesheet" href="stylee.css">
-    <style>
-        /* ========== RESPONSIVE STYLES ========== */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Negar – Online Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
 
-        /* Base reset for box-sizing */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+  <style>
+    /* =============================================
+       TOKENS
+    ============================================= */
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #161616;
+      --surface-2: #1f1f1f;
+      --border:    rgba(255,255,255,.08);
+      --accent:    #c8f03c;
+      --accent-dim:#9dbb2a;
+      --text:      #f0f0f0;
+      --muted:     #888;
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --gap:       clamp(12px, 2.5vw, 24px);
+      --section-py:clamp(48px, 8vw, 96px);
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
 
-        /* --- Container --- */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
+    /* =============================================
+       RESET
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; border: none; outline: none; }
 
-        /* ========== HEADER ========== */
-        .header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
+    /* =============================================
+       LAYOUT HELPERS
+    ============================================= */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: clamp(16px, 5vw, 48px);
+    }
 
-        .header_logo img {
-            max-width: 120px;
-        }
+    /* =============================================
+       HEADER
+    ============================================= */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 14px;
+    }
 
-        .header_nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    /* Logo */
+    .header__logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .header__logo span { color: var(--accent); }
+    .header__logo img { max-height: 36px; width: auto; }
 
-        /* ========== PAGE INTRO ========== */
-        .page_intro .container {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
+    /* Nav */
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .header__nav a {
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .2s, background .2s;
+    }
+    .header__nav a:hover { color: var(--text); background: var(--surface-2); }
 
-        .page_intro_right,
-        .page_intro_left {
-            flex: 1 1 280px;
-        }
+    /* Hamburger */
+    .header__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      padding: 6px;
+    }
+    .header__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .header__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .header__hamburger.open span:nth-child(2) { opacity: 0; }
+    .header__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* ========== NEW POSTS ========== */
-        .new_posts .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            align-items: flex-start;
-        }
+    /* Login btn */
+    .header__cta {
+      background: var(--accent);
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: .8rem;
+      padding: 9px 20px;
+      border-radius: 99px;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .header__cta:hover { background: var(--accent-dim); transform: scale(1.03); }
 
-        .new_posts .container > h2 {
-            width: 100%;
-        }
+    /* Mobile menu */
+    .header__mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px 0 16px;
+      border-top: 1px solid var(--border);
+    }
+    .header__mobile-menu.open { display: flex; }
+    .header__mobile-menu a {
+      padding: 10px 4px;
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .header__mobile-menu a:hover { color: var(--text); }
+    .header__mobile-menu .header__cta {
+      margin-top: 10px;
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+    }
 
-        .new_post {
-            flex: 1 1 200px;
-            min-width: 150px;
-        }
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      padding-block: var(--section-py);
+      overflow: hidden;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      background: rgba(200,240,60,.12);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      margin-bottom: 20px;
+    }
+    .hero__title .accent { color: var(--accent); }
+    .hero__subtitle {
+      color: var(--muted);
+      font-size: clamp(.9rem, 1.5vw, 1.05rem);
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+    .hero__btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 13px 28px;
+      border-radius: 99px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--accent-dim); transform: scale(1.03); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      font-weight: 600;
+      font-size: .9rem;
+      padding: 13px 28px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); background: rgba(200,240,60,.06); }
 
-        .new_post_card {
-            width: 100%;
-        }
+    /* Hero image */
+    .hero__media {
+      position: relative;
+    }
+    .hero__media-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      background: var(--surface);
+    }
+    .hero__badge {
+      position: absolute;
+      bottom: -16px;
+      left: -16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero__badge-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero__badge-label {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
 
-        .new_post_card img {
-            width: 100%;
-        }
+    /* =============================================
+       SECTION HEADER
+    ============================================= */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: clamp(24px, 4vw, 40px);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    .section-link {
+      font-size: .825rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .section-link:hover { opacity: .7; }
 
-        /* ========== HOME AD ========== */
-        .home_ad .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+    /* =============================================
+       NEW PRODUCTS (horizontal scroll on mobile)
+    ============================================= */
+    .new-products { padding-block: var(--section-py); }
+    .new-products__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+    }
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .25s, border-color .25s;
+    }
+    .product-card:hover { transform: translateY(-4px); border-color: rgba(200,240,60,.25); }
+    .product-card__img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+    .product-card__body { padding: 14px 16px 18px; }
+    .product-card__title {
+      font-size: .875rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .product-card__price {
+      font-size: .8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .product-card__badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(200,240,60,.12);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+    }
 
-        .home_ad_right,
-        .home_ad_left {
-            flex: 1 1 280px;
-        }
+    /* =============================================
+       AD BANNER
+    ============================================= */
+    .ad-banner { padding-block: clamp(24px, 4vw, 40px); }
+    .ad-banner__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+    .ad-banner__item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/7;
+      background: var(--surface);
+    }
+    .ad-banner__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+    .ad-banner__item:hover img { transform: scale(1.04); }
+    .ad-banner__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,13,13,.6) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    .ad-banner__label {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
 
-        /* ========== BEST SELLERS ========== */
-        .products_grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+    /* =============================================
+       BEST SELLERS
+    ============================================= */
+    .best-sellers { padding-block: var(--section-py); }
+    .best-sellers__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+    }
 
-        .product_card {
-            flex: 1 1 200px;
-            min-width: 140px;
-        }
+    /* =============================================
+       WHY US
+    ============================================= */
+    .why-us { padding-block: var(--section-py); }
+    .why-us__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+    }
+    .why-us__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      transition: border-color .25s, transform .25s;
+    }
+    .why-us__card:hover { border-color: rgba(200,240,60,.3); transform: translateY(-3px); }
+    .why-us__icon {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+    }
+    .why-us__title {
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: 8px;
+    }
+    .why-us__text {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
 
-        .product_card img {
-            width: 100%;
-        }
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding-block: clamp(40px, 6vw, 72px) 32px;
+    }
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px);
+    }
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer__brand-name span { color: var(--accent); }
+    .footer__brand-text {
+      font-size: .825rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+    .footer__col-title {
+      font-weight: 700;
+      font-size: .875rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .footer__links { display: flex; flex-direction: column; gap: 10px; }
+    .footer__links a {
+      font-size: .85rem;
+      color: var(--text);
+      transition: color .2s;
+    }
+    .footer__links a:hover { color: var(--accent); }
+    .footer__contact { display: flex; flex-direction: column; gap: 10px; }
+    .footer__contact li {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .footer__contact li span { color: var(--text); }
+    .footer__bottom {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer__copy {
+      font-size: .78rem;
+      color: var(--muted);
+    }
 
-        /* ========== WHY US ========== */
-        .why_us .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+    /* =============================================
+       DIVIDER
+    ============================================= */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
 
-        .why_us_item {
-            flex: 1 1 200px;
-            min-width: 140px;
-        }
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
 
-        /* ========== FOOTER ========== */
-        .main_footer .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
+    /* Tablet ≤ 900px */
+    @media (max-width: 900px) {
+      .new-products__grid  { grid-template-columns: repeat(2, 1fr); }
+      .best-sellers__grid  { grid-template-columns: repeat(2, 1fr); }
+      .why-us__grid        { grid-template-columns: repeat(2, 1fr); }
+      .footer__inner       { grid-template-columns: 1fr 1fr; }
+    }
 
-        .main_footer_first,
-        .main_footer_mid,
-        .main_footer_f_l {
-            flex: 1 1 200px;
-            min-width: 160px;
-        }
+    /* Tablet ≤ 768px */
+    @media (max-width: 768px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__media { order: -1; }
+      .hero__media-img { aspect-ratio: 16/9; }
+      .hero__badge { bottom: 12px; left: 12px; }
+      .hero__subtitle { max-width: 100%; }
+      .ad-banner__inner { grid-template-columns: 1fr; }
 
-        /* ========== TABLET (max 768px) ========== */
-        @media (max-width: 768px) {
-            .header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+      /* Show hamburger, hide nav */
+      .header__hamburger { display: flex; }
+      .header__nav { display: none; }
+      .header__cta { display: none; }
+    }
 
-            .header_nav {
-                flex-direction: column;
-                gap: 4px;
-            }
+    /* Mobile ≤ 480px */
+    @media (max-width: 480px) {
+      .new-products__grid  { grid-template-columns: 1fr; }
+      .best-sellers__grid  { grid-template-columns: 1fr; }
+      .why-us__grid        { grid-template-columns: 1fr; }
+      .footer__inner       { grid-template-columns: 1fr; }
+      .hero__btns          { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      .footer__bottom      { flex-direction: column; text-align: center; }
+    }
 
-            .page_intro .container {
-                flex-direction: column-reverse;
-            }
-
-            .page_intro_right,
-            .page_intro_left {
-                flex: 1 1 100%;
-            }
-
-            .new_post {
-                flex: 1 1 45%;
-            }
-
-            .product_card {
-                flex: 1 1 45%;
-            }
-
-            .why_us_item {
-                flex: 1 1 45%;
-            }
-
-            .home_ad_right,
-            .home_ad_left {
-                flex: 1 1 100%;
-            }
-        }
-
-        /* ========== MOBILE (max 480px) ========== */
-        @media (max-width: 480px) {
-            .header .container {
-                align-items: center;
-                text-align: center;
-            }
-
-            .header_nav {
-                align-items: center;
-                width: 100%;
-            }
-
-            .login_btn {
-                width: 100%;
-            }
-
-            .page_intro_right_btns {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .page_intro_right_btn {
-                width: 100%;
-            }
-
-            .new_post {
-                flex: 1 1 100%;
-            }
-
-            .product_card {
-                flex: 1 1 100%;
-            }
-
-            .why_us_item {
-                flex: 1 1 100%;
-            }
-
-            .main_footer_first,
-            .main_footer_mid,
-            .main_footer_f_l {
-                flex: 1 1 100%;
-            }
-        }
-    </style>
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
 </head>
 <body>
-    <div class="main">
-        <div class="header">
-            <div class="container">
-                <div class="header_logo">
-                    <img src="images/logo..png" alt="Shop Negar">
-                </div>
-                <nav>
-                    <ul class="header_nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="./product.html">Products</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </nav>
-                <button class="login_btn">Register | Login</button>
-            </div>
-        </div>
 
-        <div class="page_intro">
-            <div class="container">
-                <div class="page_intro_right">
-                    <h1>Shop Negar Online Store</h1>
-                    <h3>With our services, get the highest quality products in the shortest time</h3>
-                    <div class="page_intro_right_btns">
-                        <button class="page_intro_right_btn">Download App</button>
-                        <button class="page_intro_right_btn">Store</button>
-                    </div>
-                </div>
-                <div class="page_intro_left">
-                    <img src="images/a4.jpg" alt="Shop presentation">
-                </div>
-            </div>
-        </div>
+  <!-- ===========================
+       HEADER
+  =========================== -->
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="#" class="header__logo">
+          Shop<span>Negar</span>
+          <!-- If logo image exists: <img src="images/logo..png" alt="Shop Negar"> -->
+        </a>
 
-        <div class="new_posts">
-            <div class="container">
-                <h2>Newest Products</h2>
-                <div class="new_post"> 
-                    <div class="new_post_card">
-                        <div class="new_post_pic">
-                            <img src="images/a5.jpg" alt="Xiaomi Mi 10 5G">
-                        </div>
-                        <div class="new_post_body">
-                            <p class="new_post_title">Xiaomi Mi 10 5G Phone</p>
-                            <p class="new_Post_price">Price: 19 Million Tomans</p>
-                        </div>
-                    </div>  
-                </div>
-                <div class="new_post">   
-                    <div class="new_post_card">
-                        <div class="new_Post_pic1">
-                            <img src="images/a6.jpg" alt="Samsung Galaxy A16">
-                        </div>
-                        <div class="new_post_body1">
-                            <p class="new_post_title1">Samsung Galaxy A16 Mobile Phone</p>
-                            <p class="new_Post_price1">Price: 16.8 Million Tomans</p>
-                        </div>
-                    </div>  
-                </div>
-                <div class="new_post"> 
-                    <div class="new_post_card">
-                        <div class="new_post_pic2">
-                            <img src="images/a8.jpg" alt="iPhone 16 Pro Max">
-                        </div>
-                        <div class="new_post_body2">
-                            <p class="new_post_title2">iPhone 16 Pro Max</p>
-                            <p class="new_Post_price2">Price: 11 Million Tomans</p>
-                        </div>
-                    </div>    
-                </div>
-                <div class="new_post">   
-                    <div class="new_post_card">
-                        <div class="new_post_pic3">
-                            <img src="images/a9.jpg" alt="Samsung Galaxy S24 F">
-                        </div>
-                        <div class="new_post_body3">
-                            <p class="new_post_title3">Samsung Galaxy S24 F Mobile Phone</p>
-                            <p class="new_Post_price3">Price: 42 Million Tomans</p>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
+        <nav class="header__nav" aria-label="Main navigation">
+          <a href="#">Home</a>
+          <a href="./product.html">Products</a>
+          <a href="#">Contact Us</a>
+          <a href="#">About Us</a>
+        </nav>
 
-        <div class="home_ad">
-            <div class="container">
-                <div class="home_ad_right">
-                    <img src="images/a15.jpg" alt="Special offer">
-                </div>
-                <div class="home_ad_left">
-                    <img src="images/a14.jpg" alt="Special offer">
-                </div>
-            </div>
-        </div>
+        <button class="header__cta">Register / Login</button>
 
-        <div class="best_sellers">
-            <div class="container">
-                <h2>Best Sellers</h2>
-                <div class="products_grid">
-                    <div class="product_card">
-                        <div class="product_image">
-                            <img src="images/b1.jpg" alt="Moyan Bluetooth Headphones MX66">
-                        </div>
-                        <div class="product_info">
-                            <p class="product_title">Moyan Bluetooth Headphones Model MX66</p>
-                            <p class="product_price">Price: 1.5 Million Tomans</p>
-                        </div>
-                    </div>
-                    
-                    <div class="product_card">
-                        <div class="product_image">
-                            <img src="images/b2.jpg" alt="Apple Watch SE Gen2 2024">
-                        </div>
-                        <div class="product_info">
-                            <p class="product_title">Apple Watch SE Gen2 2024 40mm Size</p>
-                            <p class="product_price">Price: 19 Million Tomans</p>
-                        </div>
-                    </div>
-                    
-                    <div class="product_card">
-                        <div class="product_image">
-                            <img src="images/b5.jpg" alt="Airpods Newest M19PR">
-                        </div>
-                        <div class="product_info">
-                            <p class="product_title">Airpods Newest M19PR</p>
-                            <p class="product_price">Price: 215 Thousand Tomans</p>
-                        </div>
-                    </div>
-                    
-                    <div class="product_card">
-                        <div class="product_image">
-                            <img src="images/b4.jpg" alt="Apple Watch Series 10">
-                        </div>
-                        <div class="product_info">
-                            <p class="product_title">Apple Watch Series 10 42mm Size</p>
-                            <p class="product_price">Price: 20 Million Tomans</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button class="header__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
-        <div class="why_us">
-            <div class="container">
-                <div class="why_us_item">
-                    <div class="why_us_card">
-                        <img src="images/s1.jpg" alt="Free shipping icon">
-                        <h4>Free Shipping</h4>
-                        <p>Free shipping in less than an hour</p>
-                    </div>
-                </div>
-                <div class="why_us_item">
-                    <div class="why_us_card">
-                        <img src="images/s2.png" alt="Contact us icon">
-                        <h4>Contact Us</h4>
-                        <p>You can contact us for any comments and suggestions</p>
-                    </div>
-                </div>
-                <div class="why_us_item">
-                    <div class="why_us_card">
-                        <img src="images/s5.png" alt="Social media icon">
-                        <h4>How to Reach Us</h4>
-                        <p>You can visit our Instagram page for more information and discounts</p>
-                    </div>
-                </div>
-                <div class="why_us_item">
-                    <div class="why_us_card">
-                        <img src="images/s4.png" alt="Email icon">
-                        <h4>How to Reach Us</h4>
-                        <p>You can email us to ask any questions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="main_footer">
-            <div class="container">
-                <div class="main_footer_first">
-                    <div class="main_footer_card">
-                        <h4>About the Site</h4>
-                        <p>Shop Negar, the first online store in Iran</p>
-                    </div>
-                </div>
-
-                <div class="main_footer_mid">
-                    <div class="main_footer_card">
-                        <h4>Categories</h4>
-                        <ul>
-                            <li><a href="#">Samsung Phones</a></li>
-                            <li><a href="#">Nokia Phones</a></li>
-                            <li><a href="#">Headphones</a></li>
-                            <li><a href="#">Apple Watch</a></li>
-                            <li><a href="#">Airpods</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="main_footer_mid">
-                    <div class="main_footer_card">
-                        <h4>Contact Methods</h4>
-                        <ul>
-                            <li><span>Phone: 0903****9856</span></li>
-                            <li><span>Email: negar@gmail.com</span></li>
-                            <li><span>Address: Qazvin, Minoodar</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="main_footer_f_l">
-                    <div class="main_footer_card">
-                        <h4>About the Site</h4>
-                        <div class="main_footer_card_namad">
-                            <img src="images/s7.jpg" alt="Site certificate">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+      <!-- Mobile menu -->
+      <nav class="header__mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#">Home</a>
+        <a href="./product.html">Products</a>
+        <a href="#">Contact Us</a>
+        <a href="#">About Us</a>
+        <button class="header__cta">Register / Login</button>
+      </nav>
     </div>
+  </header>
+
+
+  <!-- ===========================
+       HERO
+  =========================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <span class="hero__eyebrow">Iran's #1 Online Tech Store</span>
+          <h1 class="hero__title">
+            Shop Smarter,<br>
+            Get It <span class="accent">Faster.</span>
+          </h1>
+          <p class="hero__subtitle">
+            Premium phones, accessories, and wearables — delivered in under an hour, guaranteed.
+          </p>
+          <div class="hero__btns">
+            <button class="btn-primary">Browse Store</button>
+            <button class="btn-outline">Download App</button>
+          </div>
+        </div>
+
+        <div class="hero__media">
+          <img class="hero__media-img" src="images/a4.jpg" alt="Shop Negar showcase" loading="eager" />
+          <div class="hero__badge">
+            <div class="hero__badge-num">500+</div>
+            <div class="hero__badge-label">Products<br>Available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===========================
+       NEWEST PRODUCTS
+  =========================== -->
+  <section class="new-products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Newest Products</h2>
+        <a href="./product.html" class="section-link">View all →</a>
+      </div>
+
+      <div class="new-products__grid">
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/a5.jpg" alt="Xiaomi Mi 10 5G" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">New</span>
+            <p class="product-card__title">Xiaomi Mi 10 5G</p>
+            <p class="product-card__price">19,000,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/a6.jpg" alt="Samsung Galaxy A16" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">New</span>
+            <p class="product-card__title">Samsung Galaxy A16</p>
+            <p class="product-card__price">16,800,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/a8.jpg" alt="iPhone 16 Pro Max" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">New</span>
+            <p class="product-card__title">iPhone 16 Pro Max</p>
+            <p class="product-card__price">11,000,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/a9.jpg" alt="Samsung Galaxy S24 FE" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">New</span>
+            <p class="product-card__title">Samsung Galaxy S24 FE</p>
+            <p class="product-card__price">42,000,000 Tomans</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       AD BANNER
+  =========================== -->
+  <section class="ad-banner">
+    <div class="container">
+      <div class="ad-banner__inner">
+        <div class="ad-banner__item">
+          <img src="images/a15.jpg" alt="Special Offer" loading="lazy" />
+          <div class="ad-banner__overlay">
+            <p class="ad-banner__label">Special<br>Offer</p>
+          </div>
+        </div>
+        <div class="ad-banner__item">
+          <img src="images/a14.jpg" alt="Limited Deal" loading="lazy" />
+          <div class="ad-banner__overlay">
+            <p class="ad-banner__label">Limited<br>Deal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===========================
+       BEST SELLERS
+  =========================== -->
+  <section class="best-sellers">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Best Sellers</h2>
+        <a href="./product.html" class="section-link">View all →</a>
+      </div>
+
+      <div class="best-sellers__grid">
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/b1.jpg" alt="Moyan Bluetooth Headphones MX66" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">Best Seller</span>
+            <p class="product-card__title">Moyan Bluetooth Headphones MX66</p>
+            <p class="product-card__price">1,500,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/b2.jpg" alt="Apple Watch SE Gen2 2024" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">Best Seller</span>
+            <p class="product-card__title">Apple Watch SE Gen2 2024 — 40mm</p>
+            <p class="product-card__price">19,000,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/b5.jpg" alt="Airpods M19PR" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">Best Seller</span>
+            <p class="product-card__title">Airpods M19PR</p>
+            <p class="product-card__price">215,000 Tomans</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__img" src="images/b4.jpg" alt="Apple Watch Series 10 42mm" loading="lazy" />
+          <div class="product-card__body">
+            <span class="product-card__badge">Best Seller</span>
+            <p class="product-card__title">Apple Watch Series 10 — 42mm</p>
+            <p class="product-card__price">20,000,000 Tomans</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===========================
+       WHY US
+  =========================== -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why Shop Negar?</h2>
+      </div>
+
+      <div class="why-us__grid">
+        <div class="why-us__card">
+          <img class="why-us__icon" src="images/s1.jpg" alt="Free Shipping" loading="lazy" />
+          <p class="why-us__title">Free Shipping</p>
+          <p class="why-us__text">Delivered in under an hour, completely free of charge.</p>
+        </div>
+        <div class="why-us__card">
+          <img class="why-us__icon" src="images/s2.png" alt="Support" loading="lazy" />
+          <p class="why-us__title">24/7 Support</p>
+          <p class="why-us__text">Reach our team anytime for comments, questions, or help.</p>
+        </div>
+        <div class="why-us__card">
+          <img class="why-us__icon" src="images/s5.png" alt="Instagram" loading="lazy" />
+          <p class="why-us__title">Follow for Deals</p>
+          <p class="why-us__text">Visit our Instagram page for exclusive discounts and updates.</p>
+        </div>
+        <div class="why-us__card">
+          <img class="why-us__icon" src="images/s4.png" alt="Email" loading="lazy" />
+          <p class="why-us__title">Email Us</p>
+          <p class="why-us__text">Have questions? Drop us an email and we'll respond fast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       FOOTER
+  =========================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__brand">
+          <p class="footer__brand-name">Shop<span>Negar</span></p>
+          <p class="footer__brand-text">
+            Shop Negar — Iran's first and most trusted online tech store. Quality products, lightning-fast delivery.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Categories</p>
+          <ul class="footer__links">
+            <li><a href="#">Samsung Phones</a></li>
+            <li><a href="#">Nokia Phones</a></li>
+            <li><a href="#">Headphones</a></li>
+            <li><a href="#">Apple Watch</a></li>
+            <li><a href="#">Airpods</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contact</p>
+          <ul class="footer__contact">
+            <li>📞 <span>0903 **** 9856</span></li>
+            <li>✉️ <span>negar@gmail.com</span></li>
+            <li>📍 <span>Qazvin, Minoodar</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Certified</p>
+          <img src="images/s7.jpg" alt="Site Certificate" style="border-radius:10px;max-width:100px;" loading="lazy" />
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 Shop Negar. All rights reserved.</p>
+        <p class="footer__copy">Made with ♥ in Iran</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===========================
+       JS: Hamburger toggle
+  =========================== -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+  </script>
+
 </body>
 </html>
