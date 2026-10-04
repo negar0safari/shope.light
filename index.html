@@ -1,843 +1,991 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop Negar – Online Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لایتینگ صفری قزوین | گالری لوکس آباژور، شمعدان و ظروف پذیرایی</title>
+
+  <!-- Google Fonts: Vazirmatn & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* =============================================
-       TOKENS
-    ============================================= */
     :root {
-      --bg:        #0d0d0d;
-      --surface:   #161616;
-      --surface-2: #1f1f1f;
-      --border:    rgba(255,255,255,.08);
-      --accent:    #c8f03c;
-      --accent-dim:#9dbb2a;
-      --text:      #f0f0f0;
-      --muted:     #888;
-      --radius-sm: 8px;
-      --radius:    14px;
-      --radius-lg: 22px;
-      --gap:       clamp(12px, 2.5vw, 24px);
-      --section-py:clamp(48px, 8vw, 96px);
-
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'Inter', sans-serif;
+      --bg-dark: #090c10;
+      --bg-surface: #121720;
+      --bg-card: rgba(22, 28, 38, 0.85);
+      --bg-card-hover: rgba(28, 36, 49, 0.95);
+      --gold-primary: #d4af37;
+      --gold-light: #f6e29f;
+      --gold-dark: #aa841e;
+      --gold-shadow: rgba(212, 175, 55, 0.25);
+      --gold-border: rgba(212, 175, 55, 0.35);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --navy-royal: #0a1320;
+      --crimson-accent: #9b1c1c;
+      --transition-base: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-fa: 'Vazirmatn', -apple-system, sans-serif;
+      --font-en: 'Cinzel', serif;
     }
 
-    /* =============================================
-       RESET
-    ============================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display: block; max-width: 100%; height: auto; object-fit: cover; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    button { cursor: pointer; font-family: inherit; border: none; outline: none; }
-
-    /* =============================================
-       LAYOUT HELPERS
-    ============================================= */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin-inline: auto;
-      padding-inline: clamp(16px, 5vw, 48px);
+      font-family: var(--font-fa);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(170, 132, 30, 0.04) 0%, transparent 40%);
     }
 
-    /* =============================================
-       HEADER
-    ============================================= */
-    .header {
+    a { text-decoration: none; color: inherit; transition: var(--transition-base); }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; transition: var(--transition-base); }
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.25rem; }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fff3c9 0%, var(--gold-light) 30%, var(--gold-primary) 70%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-button {
+      background: linear-gradient(135deg, #e3c45e 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+      color: #0b0f15;
+      font-weight: 700;
+      padding: 0.75rem 1.6rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 18px var(--gold-shadow);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .gold-button:hover {
+      box-shadow: 0 6px 24px rgba(212, 175, 55, 0.45);
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .gold-outline-btn {
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .gold-outline-btn:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--gold-primary);
+      color: #fff;
+    }
+
+    .top-strip {
+      background: linear-gradient(90deg, #070a0e, #131922, #070a0e);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      font-size: 0.78rem;
+      padding: 0.5rem 0;
+      color: var(--text-muted);
+    }
+
+    .top-strip-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .top-highlight {
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(13,13,13,.82);
+      background: rgba(9, 12, 16, 0.92);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--gold-border);
+      transition: var(--transition-base);
     }
-    .header__inner {
+
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding-block: 14px;
+      height: 82px;
     }
 
-    /* Logo */
-    .header__logo {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -.02em;
-      color: var(--text);
-    }
-    .header__logo span { color: var(--accent); }
-    .header__logo img { max-height: 36px; width: auto; }
-
-    /* Nav */
-    .header__nav {
+    .brand-logo {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 4px;
-    }
-    .header__nav a {
-      padding: 6px 14px;
-      border-radius: 99px;
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--muted);
-      transition: color .2s, background .2s;
-    }
-    .header__nav a:hover { color: var(--text); background: var(--surface-2); }
-
-    /* Hamburger */
-    .header__hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      padding: 6px;
-    }
-    .header__hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform .3s, opacity .3s;
-    }
-    .header__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .header__hamburger.open span:nth-child(2) { opacity: 0; }
-    .header__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Login btn */
-    .header__cta {
-      background: var(--accent);
-      color: #0d0d0d;
-      font-weight: 700;
-      font-size: .8rem;
-      padding: 9px 20px;
-      border-radius: 99px;
-      transition: background .2s, transform .15s;
-      white-space: nowrap;
-    }
-    .header__cta:hover { background: var(--accent-dim); transform: scale(1.03); }
-
-    /* Mobile menu */
-    .header__mobile-menu {
-      display: none;
-      flex-direction: column;
-      gap: 2px;
-      padding: 12px 0 16px;
-      border-top: 1px solid var(--border);
-    }
-    .header__mobile-menu.open { display: flex; }
-    .header__mobile-menu a {
-      padding: 10px 4px;
-      font-size: .95rem;
-      font-weight: 500;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      transition: color .2s;
-    }
-    .header__mobile-menu a:hover { color: var(--text); }
-    .header__mobile-menu .header__cta {
-      margin-top: 10px;
       text-align: center;
-      padding: 12px;
-      border-radius: var(--radius-sm);
     }
 
-    /* =============================================
-       HERO
-    ============================================= */
-    .hero {
-      padding-block: var(--section-py);
-      overflow: hidden;
-    }
-    .hero__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(32px, 6vw, 80px);
-      align-items: center;
-    }
-    .hero__eyebrow {
-      display: inline-block;
-      background: rgba(200,240,60,.12);
-      color: var(--accent);
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 99px;
-      margin-bottom: 20px;
-    }
-    .hero__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -.03em;
-      margin-bottom: 20px;
-    }
-    .hero__title .accent { color: var(--accent); }
-    .hero__subtitle {
-      color: var(--muted);
-      font-size: clamp(.9rem, 1.5vw, 1.05rem);
-      max-width: 420px;
-      margin-bottom: 36px;
-    }
-    .hero__btns {
+    .brand-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #0d0d0d;
-      font-weight: 700;
-      font-size: .9rem;
-      padding: 13px 28px;
-      border-radius: 99px;
-      transition: background .2s, transform .15s;
-    }
-    .btn-primary:hover { background: var(--accent-dim); transform: scale(1.03); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      font-weight: 600;
-      font-size: .9rem;
-      padding: 13px 28px;
-      border-radius: 99px;
-      border: 1px solid var(--border);
-      transition: border-color .2s, background .2s;
-    }
-    .btn-outline:hover { border-color: var(--accent); background: rgba(200,240,60,.06); }
 
-    /* Hero image */
-    .hero__media {
+    .brand-sub {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-top: -2px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .main-nav a {
+      color: var(--text-muted);
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    .main-nav a:hover, .main-nav a.active {
+      color: var(--gold-light);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--gold-border);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
-    .hero__media-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: var(--radius-lg);
-      object-fit: cover;
-      background: var(--surface);
+
+    .icon-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
     }
-    .hero__badge {
+
+    .badge-count {
       position: absolute;
-      bottom: -16px;
-      left: -16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px 20px;
+      top: -4px;
+      left: -4px;
+      background: var(--gold-primary);
+      color: #0d1217;
+      font-size: 0.7rem;
+      font-weight: 800;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-    .hero__badge-num {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .hero__badge-label {
-      font-size: .75rem;
-      color: var(--muted);
-      line-height: 1.3;
+      justify-content: center;
     }
 
-    /* =============================================
-       SECTION HEADER
-    ============================================= */
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: clamp(24px, 4vw, 40px);
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.35rem, 3vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -.025em;
-    }
-    .section-link {
-      font-size: .825rem;
-      font-weight: 600;
-      color: var(--accent);
-      white-space: nowrap;
-      transition: opacity .2s;
-    }
-    .section-link:hover { opacity: .7; }
-
-    /* =============================================
-       NEW PRODUCTS (horizontal scroll on mobile)
-    ============================================= */
-    .new-products { padding-block: var(--section-py); }
-    .new-products__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--gap);
-    }
-    .product-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: transform .25s, border-color .25s;
-    }
-    .product-card:hover { transform: translateY(-4px); border-color: rgba(200,240,60,.25); }
-    .product-card__img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      background: var(--surface-2);
-    }
-    .product-card__body { padding: 14px 16px 18px; }
-    .product-card__title {
-      font-size: .875rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 8px;
-    }
-    .product-card__price {
-      font-size: .8rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .product-card__badge {
-      display: inline-block;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      background: rgba(200,240,60,.12);
-      color: var(--accent);
-      padding: 3px 8px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-    }
-
-    /* =============================================
-       AD BANNER
-    ============================================= */
-    .ad-banner { padding-block: clamp(24px, 4vw, 40px); }
-    .ad-banner__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap);
-    }
-    .ad-banner__item {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+    .hero-section {
       position: relative;
-      aspect-ratio: 16/7;
-      background: var(--surface);
+      padding: 4.5rem 0 3.5rem;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
     }
-    .ad-banner__item img {
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--gold-border);
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: 2.85rem;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      max-width: 580px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-card-frame {
+      position: relative;
+      border-radius: 18px;
+      padding: 10px;
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.3), rgba(10, 16, 26, 0.7));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px var(--gold-shadow);
+    }
+
+    .hero-card-inner {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4 / 4.7;
+      background: #0d1217;
+    }
+
+    .hero-card-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .5s;
     }
-    .ad-banner__item:hover img { transform: scale(1.04); }
-    .ad-banner__overlay {
+
+    .hero-overlay-tag {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(13,13,13,.6) 0%, transparent 60%);
+      bottom: 1rem;
+      right: 1rem;
+      left: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      background: rgba(14, 19, 27, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--gold-border);
       display: flex;
-      align-items: flex-end;
-      padding: 20px;
+      justify-content: space-between;
+      align-items: center;
     }
-    .ad-banner__label {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
+
+    .section-spacing { padding: 4.5rem 0; }
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
       font-weight: 800;
       color: #fff;
-      line-height: 1.2;
+      position: relative;
+      padding-bottom: 0.8rem;
     }
 
-    /* =============================================
-       BEST SELLERS
-    ============================================= */
-    .best-sellers { padding-block: var(--section-py); }
-    .best-sellers__grid {
+    .product-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--gap);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
     }
 
-    /* =============================================
-       WHY US
-    ============================================= */
-    .why-us { padding-block: var(--section-py); }
-    .why-us__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--gap);
-    }
-    .why-us__card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 22px;
-      text-align: center;
-      transition: border-color .25s, transform .25s;
-    }
-    .why-us__card:hover { border-color: rgba(200,240,60,.3); transform: translateY(-3px); }
-    .why-us__icon {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      margin: 0 auto 16px;
-    }
-    .why-us__title {
-      font-weight: 700;
-      font-size: .95rem;
-      margin-bottom: 8px;
-    }
-    .why-us__text {
-      font-size: .8rem;
-      color: var(--muted);
-      line-height: 1.55;
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-base);
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
-    .footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding-block: clamp(40px, 6vw, 72px) 32px;
+    .product-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
     }
-    .footer__inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: clamp(24px, 4vw, 48px);
+
+    .product-img-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #0d1217;
     }
-    .footer__brand-name {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .footer__brand-name span { color: var(--accent); }
-    .footer__brand-text {
-      font-size: .825rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 260px;
-    }
-    .footer__col-title {
-      font-weight: 700;
-      font-size: .875rem;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .footer__links { display: flex; flex-direction: column; gap: 10px; }
-    .footer__links a {
-      font-size: .85rem;
-      color: var(--text);
-      transition: color .2s;
-    }
-    .footer__links a:hover { color: var(--accent); }
-    .footer__contact { display: flex; flex-direction: column; gap: 10px; }
-    .footer__contact li {
-      font-size: .82rem;
-      color: var(--muted);
-    }
-    .footer__contact li span { color: var(--text); }
-    .footer__bottom {
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-      padding-top: 24px;
+
+    .product-img { width: 100%; height: 100%; object-fit: cover; }
+    .product-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex-grow: 1; }
+    .product-foot {
+      padding: 1.15rem 1.25rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .footer__copy {
-      font-size: .78rem;
-      color: var(--muted);
     }
 
-    /* =============================================
-       DIVIDER
-    ============================================= */
-    .section-divider {
-      border: none;
-      border-top: 1px solid var(--border);
+    .current-price { font-size: 0.95rem; font-weight: 800; color: var(--gold-light); }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-base);
     }
 
-    /* =============================================
-       RESPONSIVE
-    ============================================= */
+    .drawer-backdrop.active { opacity: 1; pointer-events: auto; }
 
-    /* Tablet ≤ 900px */
-    @media (max-width: 900px) {
-      .new-products__grid  { grid-template-columns: repeat(2, 1fr); }
-      .best-sellers__grid  { grid-template-columns: repeat(2, 1fr); }
-      .why-us__grid        { grid-template-columns: repeat(2, 1fr); }
-      .footer__inner       { grid-template-columns: 1fr 1fr; }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background: #0f141c;
+      border-right: 1px solid var(--gold-border);
+      z-index: 1001;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Tablet ≤ 768px */
-    @media (max-width: 768px) {
-      .hero__inner { grid-template-columns: 1fr; }
-      .hero__media { order: -1; }
-      .hero__media-img { aspect-ratio: 16/9; }
-      .hero__badge { bottom: 12px; left: 12px; }
-      .hero__subtitle { max-width: 100%; }
-      .ad-banner__inner { grid-template-columns: 1fr; }
-
-      /* Show hamburger, hide nav */
-      .header__hamburger { display: flex; }
-      .header__nav { display: none; }
-      .header__cta { display: none; }
+    .cart-drawer.active { transform: translateX(0); }
+    .cart-head {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* Mobile ≤ 480px */
-    @media (max-width: 480px) {
-      .new-products__grid  { grid-template-columns: 1fr; }
-      .best-sellers__grid  { grid-template-columns: 1fr; }
-      .why-us__grid        { grid-template-columns: 1fr; }
-      .footer__inner       { grid-template-columns: 1fr; }
-      .hero__btns          { flex-direction: column; }
-      .btn-primary, .btn-outline { width: 100%; text-align: center; }
-      .footer__bottom      { flex-direction: column; text-align: center; }
+    .cart-body { flex-grow: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 10px;
+      padding: 0.75rem;
     }
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; animation: none !important; }
+    .cart-item-img { width: 55px; height: 55px; border-radius: 8px; object-fit: cover; }
+    .cart-foot { padding: 1.25rem 1.5rem; border-top: 1px solid rgba(212, 175, 55, 0.2); background: #0b0f15; }
+
+    .modal-box {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-base);
+    }
+
+    .modal-box.active { opacity: 1; pointer-events: auto; }
+    .modal-dialog {
+      background: #111620;
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 1.3rem;
+    }
+
+    .form-group { margin-bottom: 1rem; text-align: right; }
+    .form-group label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: #090d14;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+
+    .order-card-admin {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .order-card-admin .order-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #151b24;
+      border: 1px solid var(--gold-primary);
+      color: #fff;
+      padding: 0.85rem 1.4rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      z-index: 2000;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: var(--transition-base);
+    }
+
+    .toast-msg.show { transform: translateY(0); opacity: 1; }
+
+    .site-footer {
+      background: #06090d;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 3.5rem 0 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===========================
-       HEADER
-  =========================== -->
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <a href="#" class="header__logo">
-          Shop<span>Negar</span>
-          <!-- If logo image exists: <img src="images/logo..png" alt="Shop Negar"> -->
-        </a>
-
-        <nav class="header__nav" aria-label="Main navigation">
-          <a href="#">Home</a>
-          <a href="./product.html">Products</a>
-          <a href="#">Contact Us</a>
-          <a href="#">About Us</a>
-        </nav>
-
-        <button class="header__cta">Register / Login</button>
-
-        <button class="header__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <div class="container top-strip-flex">
+      <div class="top-highlight">
+        <i class="fa-solid fa-crown"></i>
+        <span>گالری لایتینگ صفری قزوین | بیش از یک دهه تجربه در هنر آباژور و دکوراسیون[cite: 1]</span>
+      </div>
+      <div style="display: flex; gap: 1.25rem; align-items: center;">
+        <span><i class="fa-solid fa-phone" style="color: var(--gold-primary);"></i> ۰۹۲۲۶۶۵۵۰۳۹۴[cite: 1]</span>
+        <button onclick="promptAdminLogin()" style="background: rgba(212,175,55,0.15); color: var(--gold-light); padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.7rem; border: 1px solid var(--gold-border);">
+          <i class="fa-solid fa-lock"></i> پنل سفارشات
         </button>
       </div>
+    </div>
+  </div>
 
-      <!-- Mobile menu -->
-      <nav class="header__mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-        <a href="#">Home</a>
-        <a href="./product.html">Products</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
-        <button class="header__cta">Register / Login</button>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" style="cursor: pointer;">
+        <div class="brand-title">
+          <i class="fa-solid fa-gem" style="color: var(--gold-primary);"></i>
+          <span class="gold-gradient-text">لایتینگ صَـفـَری</span>
+        </div>
+        <span class="brand-sub">Safari Lighting • Qazvin</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#products">محصولات منتخب</a>
+        <a href="https://ble.ir/negar_safari1382" target="_blank">ارتباط در بله</a>
+        <a href="tel:092266550394">تماس تلفنی[cite: 1]</a>
       </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" onclick="toggleCartDrawer(true)" title="سبد خرید">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count" id="cartCount">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
-
-  <!-- ===========================
-       HERO
-  =========================== -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero__inner">
-        <div class="hero__content">
-          <span class="hero__eyebrow">Iran's #1 Online Tech Store</span>
-          <h1 class="hero__title">
-            Shop Smarter,<br>
-            Get It <span class="accent">Faster.</span>
-          </h1>
-          <p class="hero__subtitle">
-            Premium phones, accessories, and wearables — delivered in under an hour, guaranteed.
-          </p>
-          <div class="hero__btns">
-            <button class="btn-primary">Browse Store</button>
-            <button class="btn-outline">Download App</button>
-          </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <i class="fa-solid fa-award"></i>
+          <span>یک دهه سابقه درخشان در عرضه دکوراسیون کلاسیک[cite: 1]</span>
         </div>
+        <h1 class="hero-title">
+          شکوه نور و اصالت <br>
+          <span class="gold-gradient-text">در گالری لایتینگ صفری قزوین[cite: 1]</span>
+        </h1>
+        <p class="hero-desc">
+          عرضه‌کننده آباژورهای ایستاده، ست‌های شمعدان و شکلات‌‌خوری لوکس در قزوین[cite: 1]. امکان ثبت سفارش و ارسال سریع پیام به پیام‌رسان بله فروشگاه.
+        </p>
 
-        <div class="hero__media">
-          <img class="hero__media-img" src="images/a4.jpg" alt="Shop Negar showcase" loading="eager" />
-          <div class="hero__badge">
-            <div class="hero__badge-num">500+</div>
-            <div class="hero__badge-label">Products<br>Available</div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="#products" class="gold-button">
+            <span>مشاهده کاتالوگ و خرید</span>
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-card-frame">
+          <div class="hero-card-inner">
+            <img src="istade.png" alt="آباژور ایستاده" class="hero-card-img">
+            <div class="hero-overlay-tag">
+              <div>
+                <span style="font-size: 0.72rem; color: var(--gold-primary); font-weight: bold;">پیشنهاد ویژه</span>
+                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">آباژور ایستاده کلاسیک[cite: 1]</div>
+              </div>
+              <button onclick="addCartItemById(1)" class="gold-button" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+                + خرید
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="section-divider">
-
-  <!-- ===========================
-       NEWEST PRODUCTS
-  =========================== -->
-  <section class="new-products">
+  <!-- Product Section -->
+  <section class="section-spacing" id="products">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Newest Products</h2>
-        <a href="./product.html" class="section-link">View all →</a>
+      <div class="section-head">
+        <h2 class="section-title">محصولات منتخب لایتینگ صفری</h2>
       </div>
 
-      <div class="new-products__grid">
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/a5.jpg" alt="Xiaomi Mi 10 5G" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">New</span>
-            <p class="product-card__title">Xiaomi Mi 10 5G</p>
-            <p class="product-card__price">19,000,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/a6.jpg" alt="Samsung Galaxy A16" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">New</span>
-            <p class="product-card__title">Samsung Galaxy A16</p>
-            <p class="product-card__price">16,800,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/a8.jpg" alt="iPhone 16 Pro Max" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">New</span>
-            <p class="product-card__title">iPhone 16 Pro Max</p>
-            <p class="product-card__price">11,000,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/a9.jpg" alt="Samsung Galaxy S24 FE" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">New</span>
-            <p class="product-card__title">Samsung Galaxy S24 FE</p>
-            <p class="product-card__price">42,000,000 Tomans</p>
-          </div>
-        </article>
-
-      </div>
+      <div class="product-grid" id="productGridContainer"></div>
     </div>
   </section>
 
-  <!-- ===========================
-       AD BANNER
-  =========================== -->
-  <section class="ad-banner">
-    <div class="container">
-      <div class="ad-banner__inner">
-        <div class="ad-banner__item">
-          <img src="images/a15.jpg" alt="Special Offer" loading="lazy" />
-          <div class="ad-banner__overlay">
-            <p class="ad-banner__label">Special<br>Offer</p>
-          </div>
+  <!-- Slide-out Cart Drawer -->
+  <div class="drawer-backdrop" id="cartBackdrop" onclick="toggleCartDrawer(false)"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-head">
+      <h3><i class="fa-solid fa-bag-shopping" style="color: var(--gold-primary);"></i> سبد خرید</h3>
+      <button onclick="toggleCartDrawer(false)" style="background: transparent; color: #fff; font-size: 1.2rem;">✕</button>
+    </div>
+
+    <div class="cart-body" id="cartItemsList"></div>
+
+    <div class="cart-foot">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+        <span style="color: var(--text-muted);">جمع کل:</span>
+        <span id="cartTotalPrice" style="font-weight: 800; color: var(--gold-light);">۰ تومان</span>
+      </div>
+      <button class="gold-button" onclick="openCheckoutModal()" style="width: 100%; justify-content: center;">
+        <span>ثبت سفارش و ارسال در بله</span>
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal-box" id="checkoutModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeCheckoutModal()">✕</button>
+      <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-user-check" style="color: var(--gold-primary);"></i> مشخصات خریدار محترم</h3>
+      <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.25rem;">
+        مشخصات خود را تکمیل کنید؛ پس از تایید، صفحه پیام‌رسان بله برای هماهنگی و پرداخت باز خواهد شد.
+      </p>
+
+      <form id="orderForm" onsubmit="handleFinalOrder(event)">
+        <div class="form-group">
+          <label>نام و نام خانوادگی *</label>
+          <input type="text" id="custName" required class="form-input" placeholder="مثال: مریم کریمی">
         </div>
-        <div class="ad-banner__item">
-          <img src="images/a14.jpg" alt="Limited Deal" loading="lazy" />
-          <div class="ad-banner__overlay">
-            <p class="ad-banner__label">Limited<br>Deal</p>
-          </div>
+
+        <div class="form-group">
+          <label>شماره تماس همراه *</label>
+          <input type="tel" id="custPhone" required class="form-input" placeholder="۰۹۱۲... یا ۰۹۲۲..." dir="ltr" style="text-align: left;">
         </div>
+
+        <div class="form-group">
+          <label>شهر و آدرس جهت تحویل *</label>
+          <input type="text" id="custAddress" required class="form-input" placeholder="مثال: قزوین، خیابان خیام...">
+        </div>
+
+        <div class="form-group">
+          <label>توضیحات اضافه (اختیاری)</label>
+          <input type="text" id="custNotes" class="form-input" placeholder="رنگ یا نکته خاصی مد نظرتان است بنویسید">
+        </div>
+
+        <button type="submit" class="gold-button" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>تأیید سفارش و باز کردن پیام‌رسان بله</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bale Redirection Helper Modal -->
+  <div class="modal-box" id="baleRedirectModal">
+    <div class="modal-dialog" style="max-width: 520px; text-align: center;">
+      <button class="modal-close" onclick="closeBaleRedirectModal()">✕</button>
+      <div style="font-size: 2.2rem; color: #10b981; margin-bottom: 0.5rem;">
+        <i class="fa-solid fa-comments"></i>
+      </div>
+      <h3 style="color: #fff; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.4rem;">سفارش شما در سایت ثبت شد!</h3>
+      <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.25rem; line-height: 1.7;">
+        متن فاکتور سفارش شما به‌صورت خودکار کپی شد. اکنون می‌توانید وارد چت بله شده و پیام را ارسال فرمایید:
+      </p>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <a id="baleDirectLink" href="https://ble.ir/negar_safari1382" target="_blank" class="gold-button" style="justify-content: center; padding: 0.85rem;">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>ورود مستقیم به چت بله (negar_safari1382)</span>
+        </a>
+        <a id="waDirectLink" href="#" target="_blank" class="gold-outline-btn" style="justify-content: center; border-color: #25d366; color: #25d366;">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>ارسال از طریق واتس‌اپ</span>
+        </a>
+        <button onclick="copyOrderTextToClipboard()" class="gold-outline-btn" style="justify-content: center;">
+          <i class="fa-solid fa-copy"></i>
+          <span>کپی مجدد متن فاکتور</span>
+        </button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr class="section-divider">
-
-  <!-- ===========================
-       BEST SELLERS
-  =========================== -->
-  <section class="best-sellers">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Best Sellers</h2>
-        <a href="./product.html" class="section-link">View all →</a>
+  <!-- Admin Orders Modal (Saved locally) -->
+  <div class="modal-box" id="adminModal">
+    <div class="modal-dialog" style="max-width: 750px;">
+      <button class="modal-close" onclick="closeAdminModal()">✕</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.75rem;">
+        <h3 style="color: var(--gold-light);"><i class="fa-solid fa-clipboard-list"></i> پنل سفارشات مشتریان (لایتینگ صفری)</h3>
+        <button onclick="clearAllOrders()" style="background: #ef4444; color: #fff; padding: 0.3rem 0.7rem; border-radius: 6px; font-size: 0.75rem;">حذف تاریخچه</button>
       </div>
-
-      <div class="best-sellers__grid">
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/b1.jpg" alt="Moyan Bluetooth Headphones MX66" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">Best Seller</span>
-            <p class="product-card__title">Moyan Bluetooth Headphones MX66</p>
-            <p class="product-card__price">1,500,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/b2.jpg" alt="Apple Watch SE Gen2 2024" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">Best Seller</span>
-            <p class="product-card__title">Apple Watch SE Gen2 2024 — 40mm</p>
-            <p class="product-card__price">19,000,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/b5.jpg" alt="Airpods M19PR" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">Best Seller</span>
-            <p class="product-card__title">Airpods M19PR</p>
-            <p class="product-card__price">215,000 Tomans</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img class="product-card__img" src="images/b4.jpg" alt="Apple Watch Series 10 42mm" loading="lazy" />
-          <div class="product-card__body">
-            <span class="product-card__badge">Best Seller</span>
-            <p class="product-card__title">Apple Watch Series 10 — 42mm</p>
-            <p class="product-card__price">20,000,000 Tomans</p>
-          </div>
-        </article>
-
-      </div>
+      <div id="adminOrdersContainer"></div>
     </div>
-  </section>
+  </div>
 
-  <hr class="section-divider">
+  <!-- Toast Element -->
+  <div class="toast-msg" id="toastNotification">
+    <i class="fa-solid fa-circle-check" style="color: var(--gold-primary);"></i>
+    <span id="toastText">عملیات موفق</span>
+  </div>
 
-  <!-- ===========================
-       WHY US
-  =========================== -->
-  <section class="why-us">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Why Shop Negar?</h2>
-      </div>
-
-      <div class="why-us__grid">
-        <div class="why-us__card">
-          <img class="why-us__icon" src="images/s1.jpg" alt="Free Shipping" loading="lazy" />
-          <p class="why-us__title">Free Shipping</p>
-          <p class="why-us__text">Delivered in under an hour, completely free of charge.</p>
-        </div>
-        <div class="why-us__card">
-          <img class="why-us__icon" src="images/s2.png" alt="Support" loading="lazy" />
-          <p class="why-us__title">24/7 Support</p>
-          <p class="why-us__text">Reach our team anytime for comments, questions, or help.</p>
-        </div>
-        <div class="why-us__card">
-          <img class="why-us__icon" src="images/s5.png" alt="Instagram" loading="lazy" />
-          <p class="why-us__title">Follow for Deals</p>
-          <p class="why-us__text">Visit our Instagram page for exclusive discounts and updates.</p>
-        </div>
-        <div class="why-us__card">
-          <img class="why-us__icon" src="images/s4.png" alt="Email" loading="lazy" />
-          <p class="why-us__title">Email Us</p>
-          <p class="why-us__text">Have questions? Drop us an email and we'll respond fast.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===========================
-       FOOTER
-  =========================== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-
-        <div class="footer__brand">
-          <p class="footer__brand-name">Shop<span>Negar</span></p>
-          <p class="footer__brand-text">
-            Shop Negar — Iran's first and most trusted online tech store. Quality products, lightning-fast delivery.
-          </p>
-        </div>
-
-        <div>
-          <p class="footer__col-title">Categories</p>
-          <ul class="footer__links">
-            <li><a href="#">Samsung Phones</a></li>
-            <li><a href="#">Nokia Phones</a></li>
-            <li><a href="#">Headphones</a></li>
-            <li><a href="#">Apple Watch</a></li>
-            <li><a href="#">Airpods</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="footer__col-title">Contact</p>
-          <ul class="footer__contact">
-            <li>📞 <span>0903 **** 9856</span></li>
-            <li>✉️ <span>negar@gmail.com</span></li>
-            <li>📍 <span>Qazvin, Minoodar</span></li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="footer__col-title">Certified</p>
-          <img src="images/s7.jpg" alt="Site Certificate" style="border-radius:10px;max-width:100px;" loading="lazy" />
-        </div>
-
-      </div>
-
-      <div class="footer__bottom">
-        <p class="footer__copy">© 2025 Shop Negar. All rights reserved.</p>
-        <p class="footer__copy">Made with ♥ in Iran</p>
-      </div>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container" style="text-align: center;">
+      <p style="color: var(--gold-light); font-weight: bold; margin-bottom: 0.4rem;">گالری سلطنتی لایتینگ صفری - قزوین[cite: 1]</p>
+      <p style="color: var(--text-dim); font-size: 0.8rem;">
+        آیدی بله: @negar_safari1382 | تماس: ۰۹۲۲۶۶۵۵۰۳۹۴ | ۰۹۱۲۴۸۱۵۰۴۵[cite: 1]
+      </p>
     </div>
   </footer>
 
-  <!-- ===========================
-       JS: Hamburger toggle
-  =========================== -->
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
+    // آیدی جدید بله شما
+    const BALE_USERNAME = "negar_safari1382";
+    const SELLER_WHATSAPP = "9892266550394"; // شماره واتس اپ پشتیبان
+    const ADMIN_PASSWORD = "safari";
 
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
+    let latestOrderText = "";
+
+    // Products catalog
+    const productCatalog = [
+      { id: 1, title: "آباژور ایستاده کلاسیک[cite: 1]", category: "lamp", price: 10000000, image: "istade.png", description: "آباژور ایستاده مجلل با نورپردازی گرم و بدنه باکیفیت مناسب سالن پذیرایی." },
+      { id: 2, title: "ست کامل شمعدان با شکلات خوری مجلل[cite: 1]", category: "candelabra", price: 12000000, image: "set3.png", description: "شامل دو عدد شمعدان سلطنتی و ظرف شکلات‌خوری ست پذیرایی." },
+      { id: 3, title: "ست کامل شمعدان با شکلات خوری لوکس[cite: 1]", category: "candelabra", price: 12000000, image: "setqermez.png", description: "ست کامل شمعدان با ظرف شکلات‌‌خوری هماهنگ با تم یاقوتی فاخر." },
+      { id: 4, title: "یک جفت شمعدان نفیس[cite: 1]", category: "candelabra", price: 6000000, image: "sham2.png", description: "یک جفت شمعدان دکوراتیو با تراش‌های شکیل مناسب کنسول و میز غذاخوری." },
+      { id: 5, title: "یک جفت شمعدان سلطنتی[cite: 1]", category: "candelabra", price: 10000000, image: "shamq2.png", description: "جفت شمعدان اشرافی با متریال سنگین و پرداخت بی‌نظیر برای دکور کلاسیک." },
+      { id: 6, title: "یک جفت شمعدان فاخر قرمز[cite: 1]", category: "candelabra", price: 5000000, image: "shamqermez1.png", description: "جفت شمعدان با تم زرشکی گرم و درخشندگی ویژه در نورپردازی شب." },
+      { id: 7, title: "شکلات خوری کلاسیک پذیرایی[cite: 1]", category: "tableware", price: 3500000, image: "shokolat.png", description: "ظرف شکلات‌خوری پایه دار با لعاب مقاوم برای میزبانی رسمی." },
+      { id: 8, title: "گلدان سرامیکی دکوراتیو[cite: 1]", category: "vase", price: 200000, image: "goldoon.png", description: "گلدان سرامیکی خوش‌فرم و زیبا مناسب میز جلو مبلی و دکوری منزل." }
+    ];
+
+    let cart = [];
+
+    function formatToman(amount) {
+      return new Intl.NumberFormat('fa-IR').format(amount) + ' تومان';
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('productGridContainer');
+      container.innerHTML = '';
+      productCatalog.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img-box">
+            <img src="${product.image}" alt="${product.title}" class="product-img">
+          </div>
+          <div class="product-body">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff;">${product.title}</h3>
+            <p style="font-size: 0.78rem; color: var(--text-dim);">${product.description}</p>
+          </div>
+          <div class="product-foot">
+            <span class="current-price">${formatToman(product.price)}</span>
+            <button class="gold-button" onclick="addCartItemById(${product.id})" style="padding: 0.4rem 0.8rem; font-size: 0.78rem;">
+              + افزودن
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addCartItemById(id) {
+      const product = productCatalog.find(p => p.id === id);
+      const existing = cart.find(c => c.id === id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ id: product.id, title: product.title, price: product.price, image: product.image, quantity: 1 });
+      }
+      updateCartDOM();
+      showToast(`«${product.title}» به سبد اضافه شد.`);
+    }
+
+    function updateCartDOM() {
+      const container = document.getElementById('cartItemsList');
+      const badge = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotalPrice');
+
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      const grandTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      badge.textContent = totalItems;
+      totalEl.textContent = formatToman(grandTotal);
+
+      if (cart.length === 0) {
+        container.innerHTML = '<div style="margin: auto; text-align: center; color: var(--text-dim);">سبد خرید خالی است.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      cart.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'cart-item-row';
+        row.innerHTML = `
+          <img src="${item.image}" class="cart-item-img">
+          <div style="flex-grow: 1;">
+            <div style="font-size: 0.82rem; font-weight: bold; color: #fff;">${item.title}</div>
+            <div style="font-size: 0.75rem; color: var(--gold-light);">${formatToman(item.price)} × ${item.quantity}</div>
+          </div>
+          <button onclick="removeCartItem(${item.id})" style="color: #ef4444; background: transparent;"><i class="fa-solid fa-trash"></i></button>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function removeCartItem(id) {
+      cart = cart.filter(c => c.id !== id);
+      updateCartDOM();
+    }
+
+    function toggleCartDrawer(open) {
+      document.getElementById('cartBackdrop').classList.toggle('active', open);
+      document.getElementById('cartDrawer').classList.toggle('active', open);
+    }
+
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        showToast('سبد خرید شما خالی است!');
+        return;
+      }
+      toggleCartDrawer(false);
+      document.getElementById('checkoutModal').classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.remove('active');
+    }
+
+    function closeBaleRedirectModal() {
+      document.getElementById('baleRedirectModal').classList.remove('active');
+    }
+
+    // Handle Order Submission
+    function handleFinalOrder(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const notes = document.getElementById('custNotes').value.trim();
+      const grandTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      const itemsListText = cart.map(i => `▫️ ${i.title} (${i.quantity} عدد)`).join('\n');
+
+      const newOrder = {
+        id: Date.now(),
+        date: new Date().toLocaleDateString('fa-IR'),
+        time: new Date().toLocaleTimeString('fa-IR', {hour: '2-digit', minute:'2-digit'}),
+        customerName: name,
+        customerPhone: phone,
+        address: address,
+        notes: notes,
+        items: cart,
+        totalPrice: grandTotal
+      };
+
+      // ۱. ذخیره اطلاعات در لوکال برای پنل مدیریت شما
+      let storedOrders = JSON.parse(localStorage.getItem('safari_orders') || '[]');
+      storedOrders.unshift(newOrder);
+      localStorage.setItem('safari_orders', JSON.stringify(storedOrders));
+
+      // ۲. متن فاکتور رسمی
+      latestOrderText = `سلام خانم صفری، سفارش جدید در سایت ثبت شد:
+👤 خریدار: ${name}
+📞 شماره تماس: ${phone}
+📍 آدرس تحویل: ${address}
+${notes ? '📝 توضیحات: ' + notes + '\n' : ''}
+🛒 اقلام انتخابی:
+${itemsListText}
+
+💰 مبلغ کل: ${formatToman(grandTotal)}
+لطفاً شرایط پرداخت و ارسال را بفرمایید.`;
+
+      // ۳. کپی خودکار متن فاکتور در حافظه کاربر
+      navigator.clipboard.writeText(latestOrderText).catch(() => {});
+
+      closeCheckoutModal();
+      cart = [];
+      updateCartDOM();
+
+      // ۴. لینک مستقیم به چت شما با آیدی بله
+      const baleUrl = `https://ble.ir/${BALE_USERNAME}`;
+      const waUrl = `https://wa.me/${SELLER_WHATSAPP}?text=${encodeURIComponent(latestOrderText)}`;
+
+      document.getElementById('baleDirectLink').href = baleUrl;
+      document.getElementById('waDirectLink').href = waUrl;
+      document.getElementById('baleRedirectModal').classList.add('active');
+
+      // باز کردن مستقیم صفحه بله شما
+      window.open(baleUrl, '_blank');
+    }
+
+    function copyOrderTextToClipboard() {
+      navigator.clipboard.writeText(latestOrderText).then(() => {
+        showToast('متن سفارش کپی شد! در صفحه چت بله آن را Paste (جایگذاری) فرمایید.');
+      }).catch(() => {
+        showToast('خطا در کپی خودکار.');
+      });
+    }
+
+    // پنل مدیریت و مشاهده سفارشات ثبت شده
+    function promptAdminLogin() {
+      const pass = prompt('رمز ورود به پنل سفارشات: (پیش‌فرض: safari)');
+      if (pass === ADMIN_PASSWORD) {
+        renderAdminOrders();
+        document.getElementById('adminModal').classList.add('active');
+      } else if (pass !== null) {
+        alert('رمز عبور اشتباه است!');
+      }
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('active');
+    }
+
+    function renderAdminOrders() {
+      const container = document.getElementById('adminOrdersContainer');
+      const orders = JSON.parse(localStorage.getItem('safari_orders') || '[]');
+
+      if (orders.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-dim); padding: 2rem;">هنوز هیچ سفارشی ثبت نشده است.</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+      orders.forEach((ord, index) => {
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order-card-admin';
+        const itemsDetail = ord.items.map(i => `${i.title} (${i.quantity} عدد)`).join(' ، ');
+
+        orderDiv.innerHTML = `
+          <div class="order-row" style="color: var(--gold-light); font-weight: bold;">
+            <span>سفارش #${orders.length - index} — ${ord.customerName}</span>
+            <span>${ord.date} - ${ord.time}</span>
+          </div>
+          <div class="order-row">
+            <span>شماره تماس کاربر:</span>
+            <a href="tel:${ord.customerPhone}" style="color: #38bdf8; font-weight: bold; text-decoration: underline;">${ord.customerPhone} (تماس مستقیم)</a>
+          </div>
+          <div class="order-row">
+            <span>آدرس تحویل:</span>
+            <span style="color: #fff;">${ord.address}</span>
+          </div>
+          <div class="order-row">
+            <span>اقلام انتخابی:</span>
+            <span style="color: var(--gold-primary);">${itemsDetail}</span>
+          </div>
+          <div class="order-row" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.4rem; margin-top: 0.4rem;">
+            <span>مبلغ کل:</span>
+            <span style="color: var(--gold-light); font-weight: bold;">${formatToman(ord.totalPrice)}</span>
+          </div>
+        `;
+        container.appendChild(orderDiv);
+      });
+    }
+
+    function clearAllOrders() {
+      if (confirm('آیا از پاک کردن تمامی سفارش‌های ذخیره‌شده اطمینان دارید؟')) {
+        localStorage.removeItem('safari_orders');
+        renderAdminOrders();
+      }
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastText').textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      updateCartDOM();
     });
   </script>
-
 </body>
 </html>
